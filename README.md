@@ -2,6 +2,9 @@
 
 This repository contains a Line bot that delivers weather information for specified locations. Leveraging the Central Weather Administration API(中央氣象署), it responds to user inquiries on the Line messaging platform.
 
+## Demo
+<img src="./image/weather-bot.gif" width="195" height="427">
+
 ## Getting Started
 
 To deploy and utilize this Line bot, adhere to the following instructions:
@@ -59,11 +62,12 @@ To deploy and utilize this Line bot, adhere to the following instructions:
 
 2. Expose a local port using [ngrok](https://ngrok.com/). This command will create a secure tunnel to your local server and provide you with a public URL.
 
-    ```
-    ngrok http http://localhost:3000
-    ```
+   ```
+   ngrok http http://localhost:3000
+   ```
 
 3. Configure webhook on Line Developers Console.
+
    - Log in to the [Line Developers Console](https://developeres.line.biz/).
    - Go to your Channel settings and navigate to the `Messaging API` section.
    - Under the `Webhook URL` section, enter the ngrok URL followed by the endpoint where your Line bot is listening. For example: `https://randomstring.ngrok.io/callback`
