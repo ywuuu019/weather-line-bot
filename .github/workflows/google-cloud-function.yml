@@ -1,0 +1,29 @@
+name: Deploy to Cloud Function
+
+on:
+  push:
+    branches: ["main"]
+env:
+  PROJECT_ID: precise-ray-421007
+  GAR_LOCATION: asia-east1
+  REGION: asia-east1
+  SERVICE: weather-line-bot
+
+jobs:
+  job_id:
+    runs-on: "ubuntu-latest"
+    permissions:
+      contents: "read"
+      id-token: "write"
+
+    steps:
+      - uses: "actions/checkout@v2"
+
+      - id: "google-auth"
+        uses: "google-github-actions/auth@v1"
+        with:
+          credentials_json: "${{ secrets.GCP_CREDENTIALS }}"
+
+      - id: "deploy"
+        run: |-
+          gcloud functions deploy ${{env.SERVICE}} --gen2 --runtime=nodejs20 --trigger-http --region=${{env.REGION}} --entry-point=app --cpu=1 --memory=256MB --set-env-vars=CHANNEL_ID=${{secrets.CHANNEL_ID}},CHANNEL_SECRET=${{secrets.CHANNEL_SECRET}},CWA_API_KEY=${{secrets.CWA_API_KEY}},CHANNEL_ACCESS_TOKEN="${{secrets.CHANNEL_ACCESS_TOKEN}}",NODE_ENV=${{secrets.NODE_ENV}},VISUAL_CROSSING_API_KEY=${{secrets.VISUAL_CROSSING_API_KEY}} --allow-unauthenticated --project=${{env.PROJECT_ID}}

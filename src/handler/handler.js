@@ -22,7 +22,7 @@ function handleEvent(event) {
       .catch((error) => {
         console.log(error);
       });
-  } else if (event.type === "message" || event.message.type === "text") {
+  } else if (event.type === "message" && event.message.type === "text") {
     const inputText = event.message.text;
     console.log(inputText);
     if (inputText === "天氣狀況") {
@@ -76,8 +76,9 @@ function handleEvent(event) {
           console.log(error);
         });
     } else {
-      // create an echoing text message
-      reply(event.replyToken, [{ type: "text", text: inputText }]);
+      reply(event.replyToken, [
+        { type: "text", text: "展開圖文選單，點選即可獲得相關資訊" },
+      ]);
     }
   } else {
     // ignore non-text-message event
