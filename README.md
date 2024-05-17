@@ -3,7 +3,7 @@
 This repository contains a Line bot that delivers weather information for specified locations. Leveraging the Central Weather Administration API(中央氣象署), it responds to user inquiries on the Line messaging platform.
 
 ## Demo
-<img src="./image/weather-bot.gif" width="195" height="427">
+<img src="./image/weather-bot.gif" width="300" height="641">
 
 ## Getting Started
 
